@@ -158,13 +158,11 @@ app.use(express.json()); app.use('/auth', router);
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }) .then(() => console.log('Database connected')) .catch((err) => console.error(err));
 
-const PORT = process.env.PORT || 5000; app.listen(PORT, () => console.log(Server running on port ${PORT}));
-4. Protected Routes To protect any route, you just need to apply the protect middleware.
+const PORT = process.env.PORT || 5000; app.listen(PORT, () => console.log(Server running on port ${PORT})); 4. Protected Routes To protect any route, you just need to apply the protect middleware.
 
 Example: javascript Copy Edit const { protect } = require('./authRoutes');
 
-app.get('/protected', protect, (req, res) => { res.send('This is a protected route'); }); 
-5. Secure Authentication Best Practices Hashing Passwords: Never store plaintext passwords. Always hash them using bcrypt or argon2.
+app.get('/protected', protect, (req, res) => { res.send('This is a protected route'); }); 5. Secure Authentication Best Practices Hashing Passwords: Never store plaintext passwords. Always hash them using bcrypt or argon2.
 
 JWT Expiry: Set an expiration time for JWT tokens and handle refresh tokens if necessary.
 
@@ -178,8 +176,4 @@ Extra Security Considerations CSRF Protection: If you’re using cookies for JWT
 Two-Factor Authentication: For extra security, implement 2FA (e.g., Google Authenticator).
 
 Rate Limiting: Prevent brute-force attacks by implementing rate limiting on login routes.
-
-Session Expiry: If you're using sessions, set a reasonable expiry time for user sessions.
-
-This setup should give you a secure authentication system. Let me know if you want more details on any part or if you need help with a specific technology!
 
